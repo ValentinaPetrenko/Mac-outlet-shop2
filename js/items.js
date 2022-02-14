@@ -1272,47 +1272,344 @@ const items = [
     },
 ];
 
+//card
+
 let cardslist = document.getElementById("cards-list");
 
 let card = document.getElementById("card");
-cardslist.innerHTML = "";
-items.map(item=>{
-
-let newElement = document.createElement("div");
-    newElement.classList.add("card-product")
 
 
-let imageproduct = card.getElementsByClassName("image-product");
-    imageproduct[0].src = item.imgUrl;
-
-let title=card.getElementsByClassName("title");
-  title[0].textContent=item.name;
-
-let availability=card.getElementsByClassName("availability");
-   availability[0].textContent= item.orderInfo.inStock;
-
-let price=card.getElementsByClassName("price");
-  price[0].textContent=item.price;
-
-let positive=card.getElementsByClassName("positive");
-  positive[0].textContent=item.orderInfo.reviews;
-
-let orders=card.getElementsByClassName("number-orders");
- orders[0].textContent=Math.floor(Math.random() * 10000) + 1;
+let modalWindow=document.querySelector(".modal-window");
+let basketMas=[];
+let basketWindow=document.querySelector(".basket-window");
 
 
-    newElement.innerHTML = card.innerHTML;
-    cardslist.appendChild(newElement);
-})
+function redraw(){
+    cardslist.innerHTML = "";
+    items.map(item=>{
+
+        let newElement = document.createElement("div");
+            newElement.classList.add("card-product")
+        
+        
+        let imageproduct = card.getElementsByClassName("image-product");
+            imageproduct[0].src = item.imgUrl;
+        
+        let title=card.getElementsByClassName("title");
+          title[0].textContent=item.name;
+        
+        let availability=card.getElementsByClassName("availability");
+           availability[0].textContent= item.orderInfo.inStock;
+        
+        let price=card.getElementsByClassName("price");
+          price[0].textContent=item.price;
+        
+        let positive=card.getElementsByClassName("positive");
+          positive[0].textContent=item.orderInfo.reviews;
+        
+        let orders=card.getElementsByClassName("number-orders");
+         orders[0].textContent=Math.floor(Math.random() * 10000) + 1;
+         
+         let check =card.getElementsByClassName("check");
+         if (item.orderInfo.inStock<=0) {
+             check[0].src="img/icons/close.svg"
+             check[0].style.border="none"
+             check[0].style.width="40px"
+             check[0].style.height="40px"
+             check[0].style.margin="10px"
+             check[0].style.filter= "brightness(0) saturate(100%) invert(17%) sepia(95%) saturate(6773%) hue-rotate(2deg) brightness(101%) contrast(118%)"
+         }else{
+             check[0].src="img/icons/check.svg"
+             check[0].style.padding="2px"
+             check[0].style.width="30px"
+             check[0].style.height="30px"
+             check[0].style.margin="10px"
+             check[0].style.border="#1bc943 3px solid"
+             check[0].style.borderRadius="50%"
+             check[0].style.filter= "brightness(0) saturate(100%) invert(57%) sepia(41%) saturate(658%) hue-rotate(73deg) brightness(95%) contrast(83%)"
+         }
+         let btnAdd=card.getElementsByClassName("add");
+         if (item.orderInfo.inStock<=0) {
+             btnAdd[0].style.backgroundColor="grey"
+             btnAdd[0].style.cursor="default"
+         }
+         else{
+             btnAdd[0].style.backgroundColor="#0E49B5"
+             btnAdd[0].style.cursor="pointer"
+         }
+            
+            newElement.addEventListener("click",()=>ShowInfoBox(item));
+            let productPage=document.querySelector(".product-page");
+            productPage.addEventListener("click",()=>remove());
+         
+            
+        
+            newElement.innerHTML = card.innerHTML;
+        
+            let addbtn=newElement.querySelector(".add-btn");
+            addbtn.addEventListener("click",(event) => AddToCard(event,item));
+        
+            let addbtnModal=document.querySelector(".add-btn-modal");
+            addbtnModal.addEventListener("click",(event) => AddToCard(event,item)); //Добавляет все элементы
+        
+            cardslist.appendChild(newElement);
+        
+            // let plusBasket=document.querySelector(".button-right");
+            // plusBasket.addEventListener("click", PlusFunction(item));
+            
+        })
+        
+
+}
+redraw();
 
 
+//Добавление в корзину при нажатии на button
+
+ function AddToCard(event,item){
+    let index=basketMas.find(obj=>obj.device.id===item.id);
+    if(!index){
+        basketMas.push({count:1, device:item})
+    }else{
+        index.count++;
+    }
+    event.stopPropagation();
+    console.log("AddToCard",basketMas);
+ }
+
+let basketButton=document.querySelector(".basket-img");
+basketButton.addEventListener("click",()=> ClickBasket());
+
+let containerMain=document.querySelector(".container-main");
+containerMain.addEventListener("click", ()=> ClickRemove());
+
+function ClickBasket(){
+    basketWindow.style.display="block";
+    
+}
+function ClickRemove(){
+    basketWindow.style.display="none";
+}
+
+
+
+
+//Modalwindow
+
+function ShowInfoBox(item){
+    let img=modalWindow.querySelector(".product-item-image");
+    img.src=item.imgUrl;
+
+    let titel=modalWindow.querySelector(".title2");
+    titel.textContent=item.name;
+
+    let positive=modalWindow.querySelector(".positive2");
+    positive.textContent=item.orderInfo.reviews;
+
+    let orders=modalWindow.querySelector(".number-orders2");
+    orders.textContent=Math.floor(Math.random() * 10000) + 1;
+
+    let color=modalWindow.querySelector(".colorname");
+    color.textContent=item.color;
+
+    let system=modalWindow.querySelector(".systemname");
+    system.textContent=item.os;
+
+    let chip=modalWindow.querySelector(".chipname");
+    chip.textContent=item.chip.name;
+
+    let height=modalWindow.querySelector(".heightname");
+    height.textContent=item.size.height;
+
+    let width=modalWindow.querySelector(".widthname");
+    width.textContent=item.size.width;
+
+    let depth=modalWindow.querySelector(".depthname");
+    depth.textContent=item.size.depth;
+
+    let weight=modalWindow.querySelector(".weightname");
+    weight.textContent=item.size.weight;
+
+    let price=modalWindow.querySelector(".price2");
+    price.textContent=item.price;
+    
+    let stock=modalWindow.querySelector(".stock");
+    stock.textContent=item.orderInfo.inStock;
+
+    modalWindow.style.visibility="visible";
+}
+
+function remove(){
+    modalWindow.style.visibility="hidden";
+}
+
+
+
+
+//open filter
 
 function openNav(){
     document.querySelector(".filter").style.width="300px";
-    document.querySelector(".container-cards").style.marginleft = "350px"; //Не срабатывает эта часть. 
+    let cardList=document.querySelector(".cards-list"); 
+    cardList.style[`margin-left`]=`350px`;
+    cardList.style.width=`calc(100% - 350px)`;
    
 }
 function closeNav() {
     document.querySelector(".filter").style.width="0";
-    document.querySelector(".container-cards").style.marginleft="0";
+    let cardList2=document.querySelector(".cards-list"); 
+    cardList2.style[`margin-left`]=`0px`;
+    cardList2.style.width=`100%`;
 }
+
+// change-window-filter
+
+let vectorPrice=document.querySelector(".vector-price");
+let priceWindow=document.querySelector(".filter-window-price");
+vectorPrice.addEventListener("click",WindowChangePrice);
+function WindowChangePrice(){
+    if(priceWindow.style.display !=="block"){
+        priceWindow.style.display ="block"
+        vectorPrice.style.transform = "rotate(0deg)";
+    }else{
+        priceWindow.style.display ="none"
+        vectorPrice.style.transform = "rotate(-90deg)";
+    } 
+}
+
+let vectorColor=document.querySelector(".vector-color");
+let colorWindow=document.querySelector(".filter-window-color");
+vectorColor.addEventListener("click",WindowChangeColor);
+function WindowChangeColor(){
+    if(colorWindow.style.display !=="block"){
+        colorWindow.style.display ="block"
+        vectorColor.style.transform = "rotate(0deg)";
+    }else{
+        colorWindow.style.display ="none"
+        vectorColor.style.transform = "rotate(-90deg)";
+    } 
+}
+
+let vectorMemory=document.querySelector(".vector-memory");
+let memoryWindow=document.querySelector(".filter-window-memory");
+vectorMemory.addEventListener("click",WindowChangeMemory);
+function WindowChangeMemory(){
+    if(memoryWindow.style.display !=="block"){
+        memoryWindow.style.display ="block"
+        vectorMemory.style.transform = "rotate(0deg)";
+    }else{
+        memoryWindow.style.display ="none"
+        vectorMemory.style.transform = "rotate(-90deg)";
+    } 
+}
+
+let vectorOs=document.querySelector(".vector-os");
+let osWindow=document.querySelector(".filter-window-os");
+vectorOs.addEventListener("click",WindowChangeOs);
+function WindowChangeOs(){
+    if(osWindow.style.display !=="block"){
+        osWindow.style.display ="block"
+        vectorOs.style.transform = "rotate(0deg)";
+    }else{
+        osWindow.style.display ="none"
+        vectorOs.style.transform = "rotate(-90deg)";
+    } 
+}
+
+let vectorDisplay=document.querySelector(".vector-display");
+let displayWindow=document.querySelector(".filter-window-display");
+vectorDisplay.addEventListener("click",WindowChangeDisplay);
+function WindowChangeDisplay(){
+    if(displayWindow.style.display !=="block"){
+        displayWindow.style.display ="block"
+        vectorDisplay.style.transform = "rotate(0deg)";
+    }else{
+        displayWindow.style.display ="none"
+        vectorDisplay.style.transform = "rotate(-90deg)";
+    } 
+}
+
+
+filter={
+    display:[ ],
+    memory:[ ]
+}
+function filterUpdateDisplay (key,value){
+    console.log(key,value.srcElement.defaultValue);
+    if (value.srcElement.checked){
+    filter[key].push({from: value.srcElement.defaultValue.split("-")[0], to: value.srcElement.defaultValue.split("-")[1]});
+    }else{
+        filter.display=[];
+    }
+    runFilterDisplay()
+}
+function runFilterDisplay(){
+    let filterObjects=items.filter(device=>filtreredData(device));
+    cardslist.innerHTML="";
+    redraw(filterObjects)
+}
+
+function filtreredDataDisplay(device){
+    let filterDevice=filter.display;
+    let res= filterDevice.find(filterItem=> device.display >filterItem.from && device.display < filterItem.to)
+    
+   console.log(res);
+    return !!res
+}
+
+
+// function filterUpdateMemory(key,value){
+//     if(value.checked){
+//         filter[key].push(value);
+//     }else{
+//         filter.memory=[];
+//     }
+//     runFilterMemory()
+// }
+
+// function runFilterMemory(){
+//     filterObjects=items.filter(device =>filtreredDataMemory(device));
+//     cardslist.innerHTML="";
+//     redraw(filterObjects)
+// }
+
+// function filtreredDataMemory(device){
+//     return filter.storage.find(item=> item===device.storage)
+// }
+
+redraw()
+
+
+
+// let memoryfilter=[];
+// function memory($this){
+//     let value=$this.value
+//     if($this.checked==true){
+//         for(let i=0;i<items.length;i++){
+//             if(items[i].storage==value){
+//                 memoryfilter.push(items[i])
+//             }
+//         }
+//     }else{
+//         let tmp_del=[]
+//         for(let j=0;j<memoryfilter;j++){
+//             let mark=false
+//             for(let i=0;i<tmp_del.length;i++){
+//                 if(tmp_del[i].id==memoryfilter[j].id)mark=true
+//             }
+//             if (memoryfilter[j].storage==value && mark==false){
+//                 tmp_del.push(memoryfilter[j])
+//                 memoryfilter.splice(j,1)
+//                 j--;
+//             }
+//         }
+//     }
+//     redraw(memoryfilter)
+
+// }
+
+
+
+
+
+

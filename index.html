@@ -20,13 +20,13 @@
                     </a>
                 </div>
                 <div class="basket">
-                    <img src="img/icons/cart.svg">
+                    <img class="basket-img" src="img/icons/cart.svg">
                 </div>
             </div>
         </header>
         <main>
             <div class="container-main">
-                <section class="banner" style="background-image:url(img/banners/ipad_air_banner.jpg);">
+                <section class="banner" style="background-image:url(img/banners/watch_banner.jpg);">
                     <div class="block">
                         <h1>IPad Air</h1>
                         <button>Add to cart</button>
@@ -50,172 +50,110 @@
                         </div>
                     </div>
                 </form>
-                <div class="filter">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <div class="filter-price-product">
-                        <div class="filter-price">
-                            <span >Price</span>
-                            <img  class="vector" src="img/Vector.png" alt="picture">
-                        </div>
-                        
-                        <div class="from">
-                            <label class="filter-price-from">From </label>
-                            <input type="text" class="from-price" value="350">
-                        </div>
-                        <div class="to">
-                            <label class="filter-price-to">To </label> 
-                            <input type="text" class="to-price" value="1350">
-                        </div>
-                    </div>
-                    <div class="filter-color-product">
-                        <div class="filter-color">
-                            <span>Color</span>
-                            <img class="vector" src="img/Vector.png" alt="picture">
-                        </div>
-                        <div class="color">
-                            <div class="color-left">
-                                <div class="color-red">
-                                    <input type="checkbox" id="checkbox-red" name="red">
-                                    <label for="red">Red</label>
-                                </div>
-                                <div class="color-black">
-                                    <input type="checkbox" id="checkbox-black" name="black">
-                                    <label for="black">Black</label>
-                                </div>
-                                <div class="color-blue">
-                                    <input type="checkbox" id="checkbox-blue" name="blue">
-                                    <label for="blue">Blue</label>
-                                </div>
-                                <div class="color-gold">
-                                    <input type="checkbox" id="checkbox-gold" name="gold">
-                                    <label for="gold">Gold</label>
-                                </div>
-                            </div>
-                            <div class="color-right">
-                                <div class="color-green">
-                                    <input type="checkbox" id="checkbox-green" name="green">
-                                    <label for="green">Green</label>
-                                </div>
-                                <div class="color-white">
-                                    <input type="checkbox" id="checkbox-white" name="white">
-                                    <label for="white">White</label>
-                                </div>
-                                <div class="color-grey">
-                                    <input type="checkbox" id="checkbox-grey" name="grey">
-                                    <label for="grey">Grey</label>
-                                </div>
-                                <div class="color-yellow">
-                                    <input type="checkbox" id="checkbox-yellow" name="yellow">
-                                    <label for="yellow">Yellow</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-memory-product">
-                        <div class="filter-memory">
-                            <span>Memory</span>
-                            <img class="vector" src="img/Vector.png" alt="picture">
-                        </div>
-                        <div class="memory">
-                            <div class="memory-left">
-                                <div class="memory-32">
-                                    <input type="checkbox" id="checkbox-32" name="32">
-                                    <label for="32">32 Gb</label>
-                                </div>
-                                <div class="memory-64">
-                                    <input type="checkbox" id="checkbox-64" name="64">
-                                    <label for="64">64 Gb</label>
-                                </div>
-                                <div class="memory-128">
-                                    <input type="checkbox" id="checkbox-128" name="128">
-                                    <label for="128">128 Gb</label>
-                                </div>
-                                <div class="memory-256">
-                                    <input type="checkbox" id="checkbox-256" name="256">
-                                    <label for="256">256 Gb</label>
-                                </div>
-                            </div>
-                            <div class="memory-right">
-                                <div class="memory-512">
-                                    <input type="checkbox" id="checkbox-512" name="512">
-                                    <label for="512">512 Gb</label>
-                                </div>
-                                <div class="memory-1">
-                                    <input type="checkbox" id="checkbox-1" name="1">
-                                    <label for="1">1 TB</label>
-                                </div>
-                                <div class="memory-2">
-                                    <input type="checkbox" id="checkbox-2" name="2">
-                                    <label for="2">2 TB</label>
-                                </div>
-                                <div class="memory-4">
-                                    <input type="checkbox" id="checkbox-4" name="4">
-                                    <label for="4">4 TB</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-os-product">
-                        <div class="filter-os">
-                            <span>OS</span>
-                            <img class="vector" src="img/Vector.png" alt="picture">
-                        </div>
-                        <div class="os">
-                            <div class="os-left">
-                                <div class="os-IOS">
-                                    <input type="checkbox" id="os-IOS" name="IOS">
-                                    <label for="IOS">IOS</label>
-                                </div>
-                                <div class="os-Mac-os">
-                                    <input type="checkbox" id="os-Mac-os" name="Mac-os">
-                                    <label for="Mac-os">Mac OS</label>
-                                </div>
-                                <div class="os-tvOS">
-                                    <input type="checkbox" id="os-tvOS" name="tvOS">
-                                    <label for="tvOS">tvOS</label>
-                                </div>
-                                <div class="os-Watch-os">
-                                    <input type="checkbox" id="os-Watch-os" name="Watch-os">
-                                    <label for="Watch-os">Watch OS</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-display-product">
-                        <div class="filter-display">
-                            <span>Display</span>
-                            <img class="vector" src="img/Vector.png" alt="picture">
-                        </div>
-                        <div class="display">
-                            <div class="display-left">
-                                <div class="display-2">
-                                    <input type="checkbox" id="display-2" name="2">
-                                    <label for="2">2 - 5 inch</label>
-                                </div>
-                                <div class="display-5">
-                                    <input type="checkbox" id="display-5" name="5">
-                                    <label for="5">5 - 7 inch</label>
-                                </div>
-                                <div class="display-7">
-                                    <input type="checkbox" id="display-7" name="7">
-                                    <label for="7">7 - 12 inch</label>
-                                </div>
-                                <div class="display-12">
-                                    <input type="checkbox" id="display-12" name="12">
-                                    <label for="12">12 - 16 inch</label>
-                                </div>
-                                <div class="display-16">
-                                    <input type="checkbox" id="display-16" name="16">
-                                    <label for="16">+ 16 inch</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="container-cards">
+                <section class="container-cards">
+                    <div class="filter">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                        <div class="filter-price-product">
+                            <div class="filter-price">
+                                <span >Price</span>
+                                <img  class="vector-price" src="img/Vector.png" alt="picture">
+                            </div>
+                            <div class="filter-window-price">
+                                <div class="from">
+                                    <label class="filter-price-from">From </label>
+                                    <input type="text" class="from-price"  onkeyup = 'this.value=parseInt(this.value) | 0'>
+                                    
+                                </div>
+                                <div class="to">
+                                    <label class="filter-price-to">To </label> 
+                                    <input type="text" class="to-price"onkeyup = 'this.value=parseInt(this.value) | 0'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-color-product">
+                            <div class="filter-color">
+                                <span>Color</span>
+                                <img class="vector-color" src="img/Vector.png" alt="picture">
+                            </div>
+                            <div class="filter-window-color">
+                                <div class="color">
+                                    <div class="color-left">
+                                        <label ><input type="checkbox" class="colorname" id="checkbox-red" value="Red" onclick="filterUpdate('display',event)"> Red</label>                                    
+                                        <label><input type="checkbox" class="colorname" id="checkbox-black" value="Black"> Black</label>                                    
+                                        <label><input type="checkbox" class="colorname" id="checkbox-blue" value="Blue"> Blue</label>                                    
+                                        <label><input type="checkbox" class="colorname" id="checkbox-gold" value="Gold"> Gold</label>
+                                    </div>
+                                    <div class="color-right">
+                                        <label><input type="checkbox" class="colorname" id="checkbox-green" value="Green"> Green</label>                                    
+                                        <label><input type="checkbox" class="colorname" id="checkbox-white" value="White"> White</label>                                    
+                                        <label><input type="checkbox" class="colorname" id="checkbox-grey" value="Grey">Grey</label>                                    
+                                        <label><input type="checkbox" class="colorname" id="checkbox-yellow" value="Yellow">Yellow</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="filter-memory-product">
+                            <div class="filter-memory">
+                                <span>Memory</span>
+                                <img class="vector-memory" src="img/Vector.png" alt="picture">
+                            </div>
+                            <div class="filter-window-memory">
+                                <div class="memory">
+                                    <div class="memory-left">
+                                        <label><input type="checkbox" id="checkbox-32" value="32" onclick="filterUpdateMemory (`display`,event)"> 32 Gb</label>
+                                        <label><input type="checkbox" id="checkbox-64" value="64" onclick="filterUpdateMemory (`display`,event)"> 64 Gb</label>
+                                        <label><input type="checkbox" id="checkbox-128" value="128" onclick="filterUpdateMemory (`display`,event)"> 128 Gb</label>
+                                        <label><input type="checkbox" id="checkbox-256" value="256" onclick="filterUpdateMemory (`display`,event)"> 256 Gb</label>
+                                    </div>
+                                    <div class="memory-right">
+                                        <label><input type="checkbox" id="checkbox-512" value="512" onclick="filterUpdateMemory (`display`,event)"> 512 Gb</label>
+                                        <label><input type="checkbox" id="checkbox-1" value="1" onclick="filterUpdateMemory (`display`,event)"> 1 TB</label>
+                                        <label><input type="checkbox" id="checkbox-2" value="2" onclick="filterUpdateMemory (`display`,event)"> 2 TB</label>
+                                        <label><input type="checkbox" id="checkbox-4" value="4" onclick="filterUpdateMemory (`display`,event)"> 4 TB</label>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="filter-os-product">
+                            <div class="filter-os">
+                                <span>OS</span>
+                                <img class="vector-os" src="img/Vector.png" alt="picture">
+                            </div>
+                            <div class="filter-window-os">
+                                <div class="os">
+                                    <div class="os-left">
+                                        <label><input type="checkbox" id="os-IOS" value="IOS"> IOS</label>
+                                        <label><input type="checkbox" id="os-Mac-os" value="Mac-os"> Mac OS</label>
+                                        <label><input type="checkbox" id="os-tvOS" value="tvOS"> tvOS</label>
+                                        <label><input type="checkbox" id="os-Watch-os" value="Watch-os"> Watch OS</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-display-product">
+                            <div class="filter-display">
+                                <span>Display</span>
+                                <img class="vector-display" src="img/Vector.png" alt="picture">
+                            </div>
+                            <div class="filter-window-display">
+                                <div class="display">
+                                    <div class="display-left">
+                                        <label><input type="checkbox" id="display-2" value="2-5" onclick="filterUpdateDisplay (`display`,event)"> 2 - 5 inch</label>
+                                        <label><input type="checkbox" id="display-5" value="5-7"  onclick="filterUpdateDisplay (`display`,event)"> 5 - 7 inch</label>
+                                        <label><input type="checkbox" id="display-7" value="7-12"  onclick="filterUpdateDisplay (`display`,event)"> 7 - 12 inch</label>
+                                        <label><input type="checkbox" id="display-12" value="12-16"  onclick="filterUpdateDisplay (`display`,event)"> 12 - 16 inch</label>
+                                        <label><input type="checkbox" id="display-16" value="16+"  onclick="filterUpdate16 (`display`,event)">  16+ inch</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
                     <div id="cards-list" class="cards-list">
-                        <div id="card" class="card-product">
+                        <div id="card" data-btn="modalproduct" class="card-product" >
                             <div class="card-header">
                                 <div class="like">
                                     <img src="img/icons/like_empty.svg">
@@ -228,17 +166,14 @@
                                 <span class="title">Apple TV Gen.4</span>
                                 <div class="card-information">
                                     <div class="information">
-                                        <div class="change">
-                                            <img class="check" src="img/icons/check.svg" alt="icon">
-                                            <!-- <img class="close" src="img/icons/close.svg" alt="close">  -->
-                                        </div>
+                                        <img class="check" src="" alt="#">
                                         <p> <span class="availability"><strong>31</strong></span> left in stock</p>
                                     </div>
                                     <div class="pricestring">
                                         <p>Price:<span class="price"><strong>500</strong></span>$</p>
                                     </div>
                                 </div>
-                                <button id="add" class="add"><a href="#"> Add to cart</a></button>
+                                <button id="add" class="add add-btn"> Add to cart</button>
                             </div>
                             <div class="card-footer">
                                 <img class="img-like" src="img/icons/like_filled.svg" alt="picture">
@@ -253,8 +188,85 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
+                 
             </div>
+            <section id="modal-window" class="modal-window">
+                <div id="product-page" class="product-page"></div> 
+                <div id="product-item" class="product-item">
+                    <div class="product-item-img">
+                        <img class="product-item-image" src="items/apple-tv.jpeg" alt="picture">
+                    </div>
+                    <div class="product-item-body">
+                        <span class="title2">Apple TV</span>
+                        <div class="card-info">
+                            <img class="img-like" src="img/icons/like_filled.svg" alt="picture">
+                            <div class="positivereviews">
+                                <p><span class="positive2">77</span><span class="interest">%</span>Positive reviews<br>Above avarge </p>    
+                            </div>
+                            <div class="orders">
+                                <p><span class="number-orders2">853</span><br>orders</p> 
+                            </div>
+                        </div>
+                        <div class="product-item-information">
+                            <span class="color-product">Color:<span class="colorname"> Black</span></span>
+                            <span class="system">Operating System:<span class="systemname"> tvOS</span></span>
+                            <span class="chip">Chip:<span class="chipname"> A10X</span></span>
+                            <span class="height">Height:<span class="heightname"> 3.5</span> cm</span>
+                            <span class="width">Width:<span class="widthname"> 9.8</span> cm</span>
+                            <span class="depth">Depth:<span class="depthname"> 9.8</span> cm</span>
+                            <span class="weight">Weight:<span class="weightname"> 425</span> g</span>
+                        </div>
+                    </div>
+                    <div class="price-information">
+                        <span class="priceproduct"><span class="znakprice">$</span> <span class="price2">999</span></span>
+                        <span class="onstock">Stock: <span class="stock">45</span> pcs.</span>
+                        <button id="add-btn" class="add-btn add-btn-modal"> Add to cart</button>
+                    </div>
+                </div>
+
+            
+            </section>
+            <section class="basket-window">
+                <div class="basket-header">
+                    <span>Shopping Cart</span>
+                    <span>Checkout is almost done!</span>
+                </div>
+                <div class="basket-body">
+                    <img class="basket-img" src="items/airpods.jpg" alt="backet">
+                    <div class="basket-info">
+                        <span class="basket-info-title">Apple AirPods Pro</span>
+                        <span class="baskrt-info-price">$600</span>
+                    </div>
+                    <div class="basket-count">
+                        <button class="left-button">
+                            <img class="button-left" src="img/icons/arrow_left.svg" alt="button">
+                        </button>
+                        <input type="number" class="count-number" value="1"></input>
+                        <button class="right-button">
+                            <img class="button-right" src="img/icons/arrow_left.svg" alt="button">
+                        </button>
+                    </div>
+                    <button class="delete-button">
+                        <img class="button-delete" src="img/X.png" alt="button">
+                    </button>
+                </div>
+                <div class="basket-result">
+                    <span>
+                        <span class="totalamount"> Total amount:</span> 
+                        <span><span class="amount-number">3 </span>ptc.</span>
+                    </span>
+                    <span>
+                        <span class="totalptice">Total price:</span> 
+                        <span><span class="price-number">1699 </span> $</span> 
+                    </span>
+                </div>
+                <div class="buy">
+                    <button class="button-buy">Buy</button>
+                </div>
+
+            </section>
+
 
         </main>
     </div>

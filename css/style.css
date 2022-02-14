@@ -5,21 +5,33 @@
 }
 
 .container{
-    margin: 0 250px; 
+    margin: 0 250px;
 }
+
 .container-header{
     display: flex;
     justify-content: space-between;
-    padding-top: 20px;
+    padding: 10px 250px 0px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    background-color: rgb(250, 250, 250);
+    
+    
 }
 .basket{
     border: 2px solid rgb(131, 126, 126);
     border-radius: 50%;
+    margin-bottom: 10px;
+    
 }
 .basket img{
     width: 40px;
     height: 40px;
     padding: 5px;
+    
 }
 
 .banner{
@@ -30,13 +42,14 @@
     background-position: 50% 50%; 
     width: 100%;
     height: 600px;
+    margin-top: 60px;
 }
 
 .block{
     position: absolute;
     text-align: center;
     top: 40%;
-    z-index: 2;
+    z-index: 1;
     width: 100%;
     max-width: 1500px;
     
@@ -147,6 +160,9 @@
     text-decoration: none;
     color:  #a7b1bd;
 }
+
+/* filter */
+
 .filter{
     width: 0px;
     border: 1px solid rgb(255, 255, 255);
@@ -158,13 +174,12 @@
     position: absolute;
     left: 250px;
     z-index: 1;
+    background: white;
+   
 }
 .filter-price-product{
     display: flex;
     flex-direction: column;
-    
-    
- 
 }
 .filter-price img{
     margin-top: 40px;
@@ -205,11 +220,23 @@
 .filter-price span{
     margin-top: 30px;
 }
-.vector{
-    width: 10px;
-    height: 10px;
+.filter-window-price,
+.filter-window-color,
+.filter-window-memory,
+.filter-window-os,
+.filter.widow-display{
+    display: block;
+}
+.vector-price,
+.vector-color,
+.vector-memory,
+.vector-os,
+.vector-display{
+    width: 15px;
+    height: 15px;
     margin: 20px 20px 5px;
-    filter: brightness(0) saturate(100%) invert(54%) sepia(11%) saturate(15%)
+    filter: brightness(0) saturate(100%) invert(54%) sepia(11%) saturate(15%);
+    cursor: pointer;
 }
 .color,
 .memory{
@@ -218,12 +245,29 @@
 .color-right,
 .memory-right{
     margin: 20px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 .color-left,
 .memory-left,
 .os-left,
 .display-left{
     margin: 20px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.color-right input,
+.memory-right input{
+    margin-bottom: 10px;
+}
+.color-left input,
+.memory-left input,
+.os-left input,
+.display-left input{
+    margin-bottom: 10px;
+
 }
 .filter-color,
 .filter-memory,
@@ -242,13 +286,7 @@
 
 
 
-
-
-
-
-
-
-
+/* cards */
 
 .cards-list{
     display: flex;
@@ -258,7 +296,7 @@
 }
 
 .card-product{
-    width: 33,33%;
+    width: 320px;
     border: 1px solid rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
@@ -266,9 +304,8 @@
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.1);
+    cursor: pointer;
 }
-
-
 .card-header{
     display: flex;
     justify-content: flex-end;
@@ -286,32 +323,22 @@
     min-width: 40px;
     min-height: 40px;
     margin: 20px;
-    
-    
 }
 .like-active img{
     width: 35px;
     height: 35px;
     filter: brightness(0) saturate(100%) invert(17%) sepia(95%) saturate(6773%) hue-rotate(2deg) brightness(101%) contrast(118%);
-
 }
-
-   
-
 .card-main{
     display: flex;
     flex-direction: column;
     text-align: center;
     margin-bottom: 25px;
-    
 }
-
 .card-image img{
     width: 300px;
     height: 300px;
-   
 }
-
 .card-main .title{
     font-size: 30px;
     font-weight: bold;
@@ -325,20 +352,6 @@
 .card-information .information{
     display: flex;
     justify-content: center; 
-}
-.card-information .information .check{
-    border: 3px solid rgb(31, 219, 41);
-    border-radius: 50%;
-    
-    width: 30px;
-    height: 30px;
-    margin:10px; 
-    filter: brightness(0) saturate(100%) invert(57%) sepia(41%) saturate(658%) hue-rotate(73deg) brightness(95%) contrast(83%); 
-}
-.card-information .information .close{
-    margin: 10px;  
-    width: 35px;
-    filter: brightness(0) saturate(100%) invert(17%) sepia(95%) saturate(6773%) hue-rotate(2deg) brightness(101%) contrast(118%);
 }
 .availability,
 .price{
@@ -395,51 +408,337 @@
     
 }
 
+/* product-page */
+
+.modal-window{ 
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    visibility: hidden;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    
+}
+.product-page{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #c5c0c088;
+    position: relative;
+    
+}
+.product-item{
+    background-color: white;
+    overflow: auto;
+    position: absolute;
+    top: 15%;
+    width: 70%;
+    height: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    
+
+}
+.product-item-body,
+.product-item-img{
+    border-right: 2px solid #a7b1bd;
+}
+
+.product-item-body{
+    width: 100%;
+    
+}
+.product-item-body,
+.price-information,
+.product-item-information{
+    display: flex;
+    flex-direction: column;
+}
+.product-item-img{
+    width: 33%;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+.product-item-image{
+    width: 100%;
+}
+.product-item-body{
+    width: 40%;
+    padding: 50px 20px 80px;
+}
+.product-item-body .title2{
+    font-size: 40px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+.card-info{
+    background-color: rgb(226, 229, 243);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-evenly;
+    color: rgb(56, 54, 54);
+    line-height: 25px;
+    font-size: 20px;
+    width: 100%;
+}
+.product-item-information{
+    font-size: 25px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.color-product{
+    width: 100%;
+    word-spacing: 3px;
+}
+.product-item-information span{
+    line-height: 35px;
+}
+.price-information{
+    width: 33%;
+    align-items: center;
+    align-self: center;
+}
+
+.price2,
+.znakprice{
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.onstock{
+    font-size: 30px;
+}
+.positive2,
+.number-orders2{
+    font-weight: bold;
+}
+.add-btn{
+    text-decoration: none;
+    background-color: rgb(69, 69, 202);
+    color: rgb(250, 250, 250);
+    vertical-align: top;
+    padding: 0.5em 1em;
+    border-radius: 8px;  
+    text-align: center;
+    line-height: 25px;
+    font-weight: 400;
+    font-size: 28px;
+    align-self: center;
+    margin-top: 30px;
+}
+.colorname,
+.systemname,
+.chipname,
+.heightname,
+.widthname,
+.depthname,
+.weightname,
+.stock{
+    font-weight: bold;
+}
+
+/* //Style to basket */
+.basket-window{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    overflow-y: auto;
+    margin: 80px auto;
+    background: #FFFFFF;
+    box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+    border-radius: 6px;
+    position: fixed;
+    top: -12px;
+    right: 250px;
+    z-index: 9999;
+    display: none;
+}
+.basket-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    border-bottom: 1px solid #5a6674;
+    
+}
+.basket-header span:first-child{
+    font-size: 40px;
+    font-weight: bold;
+}
+.basket-header span:last-child{
+    font-size: 20px;
+    color: #5a6674;
+}
+.basket-body{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 40px 0;
+    border-bottom: 1px solid #5a6674;
+}
+.basket-img{
+    width: 100px;  
+}
+.basket-info-title{
+    font-size: 20px;
+    font-weight: bold;
+    width: 100px;
+    margin-bottom: 10px;
+}
+.baskrt-info-price{
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgb(210, 224, 250);
+    color: rgb(11, 15, 241);
+    width: 60px;
+}
+.basket-info{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    padding: 20px;
+    align-self: center;
+
+}
+.basket-count{
+    width: 100px;
+    display: flex;
+    align-self: center;
+}
+.count-number{
+    width: 30px;
+    height: 34px;
+    margin: 0 5px;
+    font-size: 30px;
+    color: rgb(97, 97, 206);
+    text-align: center;
+}
+.button-left{
+    transform: rotate(180deg);
+   
+}
+.left-button,
+.right-button{
+    background-color: rgb(69, 69, 202);
+    width: 30px;
+}
+.button-left,
+.button-right{
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
+}
+.delete-button{
+    background-color: #f7b9b9;
+    width: 30px;
+    height: 34px;
+    display: flex;
+    align-self: center;
+    border: none;
+}
+.button-delete{
+    width: 25px;
+    height: 25px;
+    text-align: center;   
+}
+.basket-result{
+    display: flex;
+    justify-content: space-around;
+    height: 100px;
+    align-items: center;
+    font-size: 20px;
+    background-color: rgb(210, 224, 250);
+}
+.totalamount,
+.totalptice{
+    color: #5a6674;
+}
+.buy{
+    display: flex;
+    justify-content: center;    
+}
+.button-buy{
+    
+    background-color: rgb(69, 69, 202);
+    margin: 30px;
+    border-radius: 15px;
+    color: #DDDDDD;
+    padding: 20px 100px;
+    font-size: 30px;
+}
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width:1495px){
     .card-product{
-        width: calc(50% - 100px);
-        margin-left: 50px;
-        margin-right: 50px;
+        width: 400px;
+    } 
+    .product-item{
+        flex-direction: column;
+        height: 800px;
+        width: 500px;
+     
+    }
+    .product-item-body,
+    .product-item-img{
+    border-right: 0;
+    border-bottom: 1px solid rgb(131, 126, 126);
+    padding: 10px 20px;
+    }
+    .onstock{
+        width: 200px;
+    }
+    .price-information {
+        width: 100%;
+    }
+    .product-item-body {
+        width: 100%;
+        
+    }
+    .product-item-img {
+        width: 100%;
+        margin-top: 300px;
+    } 
+    .add-btn{
+        margin-bottom: 30px;
+    }  
+}
+@media (max-width:1299px){
+    .cards-list{
+        justify-content: center;
     }
     
 }
-@media (max-width:1199px){
+
+
+@media (max-width:799px){
     .card-product{
-        width: calc(100% - 300px);
-        margin-left: 150px;
-        margin-right: 150px;
-    }
-    /* .card-product:nth-child(2),
-    .card-product:nth-child(5){
-    margin-left: 150px;
-    margin-right: 150px;
-    } */
-}
-@media (max-width:900px){
-  
-    .card-product{
-        width: calc(100% - 100px);
-        margin-left: 50px;
-        margin-right: 50px;
-    }
-    /* .card-product:nth-child(2),
-    .card-product:nth-child(5){
-    margin-left: 50px;
-    margin-right: 50px;
-    } */
-}
-@media (max-width:767px){
-    .card-product{
-        width: 100%;
+        width: 250px;
         margin-left: 0px;
         margin-right: 0px;
     }
-    /* .card-product:nth-child(2),
-    .card-product:nth-child(5){
-    margin-left: 0px;
-    margin-right: 0px;
-    } */
+    .card-image img{
+        width: 180px;
+        height: 180px;
+       
+    }
+    
 }
 
 
