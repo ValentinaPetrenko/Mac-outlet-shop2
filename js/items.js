@@ -1275,18 +1275,18 @@ const items = [
 //card
 
 let cardslist = document.getElementById("cards-list");
-
 let card = document.getElementById("card");
 
-
 let modalWindow=document.querySelector(".modal-window");
-let basketMas=[];
-let basketWindow=document.querySelector(".basket-window");
+
+let basketList=document.getElementById("basket-list");
+let basketWindow=document.getElementById("basket-window");
 
 
-function redraw(){
+
+function redraw(device){
     cardslist.innerHTML = "";
-    items.map(item=>{
+    device.map(item=>{
 
         let newElement = document.createElement("div");
             newElement.classList.add("card-product")
@@ -1348,10 +1348,12 @@ function redraw(){
         
             let addbtn=newElement.querySelector(".add-btn");
             addbtn.addEventListener("click",(event) => AddToCard(event,item));
-        
-            let addbtnModal=document.querySelector(".add-btn-modal");
-            addbtnModal.addEventListener("click",(event) => AddToCard(event,item)); //Добавляет все элементы
-        
+            
+  
+            let btnbasket=document.getElementById("basket-img");
+            btnbasket.addEventListener("click",() => basket(item)); 
+            
+            
             cardslist.appendChild(newElement);
         
             // let plusBasket=document.querySelector(".button-right");
@@ -1361,11 +1363,11 @@ function redraw(){
         
 
 }
-redraw();
+redraw(items);
 
 
 //Добавление в корзину при нажатии на button
-
+basketMas=[];
  function AddToCard(event,item){
     let index=basketMas.find(obj=>obj.device.id===item.id);
     if(!index){
@@ -1384,12 +1386,70 @@ let containerMain=document.querySelector(".container-main");
 containerMain.addEventListener("click", ()=> ClickRemove());
 
 function ClickBasket(){
-    basketWindow.style.display="block";
+    basketList.style.display="block";
+    basket(items)
+    return basketMas;
     
 }
 function ClickRemove(){
-    basketWindow.style.display="none";
+    basketList.style.display="none";
 }
+
+function basket(item){
+    let cartWindow=document.createElement("div");
+    cartWindow.classList.add("basket-item");
+    let basketBody=document.getElementById("basket-body")
+    cartWindow.innerHTML=`
+        <div id="basket-body-change" class="basket-body-change">
+            <img class="basket-img" src="${item.imgUrl}" alt="basket">
+            <div class="basket-info">
+                <span class="basket-info-title">${item.name}</span>
+                <span class="basket-info-price">$ ${item.price}</span>
+            </div>
+        </div>
+        <div class="basket-count">
+            <button class="left-button">
+                <img class="button-left" src="img/icons/arrow_left.svg" data-id="${item.id}" alt="button">
+            </button>
+            <input type="number" class="count-number" value="1"></input>
+            <button class="right-button">
+                <img class="button-right" src="img/icons/arrow_left.svg" data-id="${item.id}" alt="button">
+            </button>
+        </div>
+        <button class="delete-button">
+            <img class="button-delete" src="img/X.png" data-id="${item.id}" alt="button">
+        </button>`
+    basketBody.appendChild(cartWindow)
+}
+
+
+
+// document.onclick = event =>{
+//     console.log(event.target.classList);
+//     if(event.target.classList.contains('buuton-right')){
+//         plusFunction(event.target.dataset.id);
+//     }
+//     if(event.target.classList.contains('buuton-left')){
+//         minusFunction(event.target.dataset.id);
+// }
+// let plusFunction = id=>{
+//     cart[id]++;
+//     basket()
+// }
+// let minusFunction = id=>{
+//     if (cart[id]-1==0){
+//         deletFunction(id);
+//         return true;
+//     }
+//     cart[id]--;
+//     basket()
+// }
+
+// let deletFunction = id=>{
+//     delete cart[id];
+//     basket()
+// }
+
 
 
 
@@ -1437,6 +1497,9 @@ function ShowInfoBox(item){
     stock.textContent=item.orderInfo.inStock;
 
     modalWindow.style.visibility="visible";
+
+    let addbtnModal=document.querySelector(".add-btn-modal");
+    addbtnModal.addEventListener("click",(event) => AddToCard(event,item)); 
 }
 
 function remove(){
@@ -1530,85 +1593,165 @@ function WindowChangeDisplay(){
 }
 
 
-filter={
-    display:[ ],
-    memory:[ ]
-}
-function filterUpdateDisplay (key,value){
-    console.log(key,value.srcElement.defaultValue);
-    if (value.srcElement.checked){
-    filter[key].push({from: value.srcElement.defaultValue.split("-")[0], to: value.srcElement.defaultValue.split("-")[1]});
-    }else{
-        filter.display=[];
-    }
-    runFilterDisplay()
-}
-function runFilterDisplay(){
-    let filterObjects=items.filter(device=>filtreredData(device));
-    cardslist.innerHTML="";
-    redraw(filterObjects)
-}
-
-function filtreredDataDisplay(device){
-    let filterDevice=filter.display;
-    let res= filterDevice.find(filterItem=> device.display >filterItem.from && device.display < filterItem.to)
-    
-   console.log(res);
-    return !!res
-}
 
 
-// function filterUpdateMemory(key,value){
-//     if(value.checked){
-//         filter[key].push(value);
-//     }else{
-//         filter.memory=[];
-//     }
-//     runFilterMemory()
+//Фильтр работающий
+
+let filter = {
+    color: [],
+    storage: [],
+    os: [],
+    display: [],
+}
+let filterParmsHandler = {
+    color: (val) => ({ id: val }),
+    storage: (val) => ({ id: val }),
+    os: (val) => ({ id: val }),
+    display: (val) => ({ id: val, from: val.split("-")[0], to: val.split("-")[1] }),
+}
+function filterActionHandler(callback) {
+    this.filterContainer.querySelectorAll("input").forEach(item => {
+        item.onchange = (item.type === 'number') ?
+            () => {
+                this.updateAndRenderInput(item);
+                callback();
+            } :
+            () => {
+                this.updateAndRender(item)
+                callback();
+            };
+
+    })
+}
+
+
+
+// function filterInputUpdate(value, key, prop) {
+//     filter[key][prop] = value;
+
 // }
 
-// function runFilterMemory(){
-//     filterObjects=items.filter(device =>filtreredDataMemory(device));
+function filterUpdate(el, key) {
+    let value = key.srcElement.defaultValue;
+    if (key.srcElement.checked) {
+        let index = filter[el].findIndex(filterValue => filterValue.id === el)
+        if (index === -1) {
+            filter[el].push(filterParmsHandler[el](value));
+            console.log(filter);
+        }
+    } else {
+        let index = filter[el].findIndex(filterValue => filterValue.id === el)
+        if (index === -1) {
+            filter[el].splice(index, 1);
+        }
+    }
+    filtration()
+}
+
+
+function filtration() {
+    redraw(items.filter(device => filteredData(device)));
+
+}
+
+function filteredData(device) {
+    let res = 0
+    for (let key in filter) {
+        switch (key) {
+            case 'storage':
+                if (filter[key].length > 0) {
+                    res = filter[key].findIndex(filterStorage => String(device.storage) === filterStorage.id);
+                }
+                break;
+            case 'os':
+                if (filter[key].length > 0) {
+                    res = filter[key].findIndex(filterOs => String(device[key]) === filterOs.id);
+                }
+                break;
+            case 'color':
+                if (filter[key].length > 0) {
+                    res = filter[key].findIndex(filterColor => device.color.includes(filterColor.id));
+                }
+                break;
+
+            case 'display':
+                if (filter[key].length > 0) {
+                    res = filter[key].findIndex(filterItem => device.display > filterItem.from && device.display < filterItem.to)
+                }
+                break
+            case 'price':
+                 if (this.filter[key].from && this.filter[key].to) {
+                    res = (this.filter[key].from <= device.price && this.filter[key].to >= device.price) ? 1 : -1;
+                }
+                break;
+        }
+
+        if (res === -1) {
+            break
+        }
+    }
+    return (res > -1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// filter={
+//     display:[ ],
+// }
+
+// function filterUpdate (key,value){
+//     console.log(key,value.srcElement.defaultValue)
+//     if(value.srcElement.checked){
+//         let index = filter[key].find(filterValue => filterValue.id === value.srcElement.defaultValue)
+//     if(!index){
+//     filter[key].push({id:value.srcElement.defaultValue, from :value.srcElement.defaultValue.split("-")[0],to :value.srcElement.defaultValue.split("-")[1]});
+//    } }else{
+//     let index = filter[key].findIndex(filterValue => filterValue.id === value.srcElement.defaultValue)
+//     if(index>-1){
+//     filter[key].splice(index);
+//     }
+ 
+//     }
+//     if(filter[key].length===0){
+//         redraw(items)
+//         return;
+//     }
+//  runFilter()
+//  }
+ 
+// function filterInputUpdate(key,value,prop){
+//     this.filter[key][prop]=value
+//     runFilter()
+// }
+
+// function runFilter(){
+//     let filterObjects=items.filter(device=>filtreredData(device));
 //     cardslist.innerHTML="";
 //     redraw(filterObjects)
+// };
+
+// function filtreredData(device){
+//     let filterDevice=filter.display;
+//     let resDisplay= filterDevice.find(filterItem=> device.display >filterItem.from && device.display < filterItem.to);
+
+
+//     console.log(resDisplay);
+//     return !!resDisplay 
 // }
-
-// function filtreredDataMemory(device){
-//     return filter.storage.find(item=> item===device.storage)
-// }
-
-redraw()
-
-
-
-// let memoryfilter=[];
-// function memory($this){
-//     let value=$this.value
-//     if($this.checked==true){
-//         for(let i=0;i<items.length;i++){
-//             if(items[i].storage==value){
-//                 memoryfilter.push(items[i])
-//             }
-//         }
-//     }else{
-//         let tmp_del=[]
-//         for(let j=0;j<memoryfilter;j++){
-//             let mark=false
-//             for(let i=0;i<tmp_del.length;i++){
-//                 if(tmp_del[i].id==memoryfilter[j].id)mark=true
-//             }
-//             if (memoryfilter[j].storage==value && mark==false){
-//                 tmp_del.push(memoryfilter[j])
-//                 memoryfilter.splice(j,1)
-//                 j--;
-//             }
-//         }
-//     }
-//     redraw(memoryfilter)
-
-// }
-
-
 
 
 

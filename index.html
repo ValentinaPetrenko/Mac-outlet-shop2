@@ -20,7 +20,7 @@
                     </a>
                 </div>
                 <div class="basket">
-                    <img class="basket-img" src="img/icons/cart.svg">
+                    <img id="basket-img" class="basket-img" src="img/icons/cart.svg">
                 </div>
             </div>
         </header>
@@ -62,12 +62,12 @@
                             <div class="filter-window-price">
                                 <div class="from">
                                     <label class="filter-price-from">From </label>
-                                    <input type="text" class="from-price"  onkeyup = 'this.value=parseInt(this.value) | 0'>
+                                    <input id="price-from" class="from-price"   data-filter-type="price" data-filter-prop="from" value="" type="number">
                                     
                                 </div>
                                 <div class="to">
                                     <label class="filter-price-to">To </label> 
-                                    <input type="text" class="to-price"onkeyup = 'this.value=parseInt(this.value) | 0'>
+                                    <input id="price-to" class="to-price"  data-filter-type="price" data-filter-prop="to" value="" type="number">
                                 </div>
                             </div>
                         </div>
@@ -79,16 +79,16 @@
                             <div class="filter-window-color">
                                 <div class="color">
                                     <div class="color-left">
-                                        <label ><input type="checkbox" class="colorname" id="checkbox-red" value="Red" onclick="filterUpdate('display',event)"> Red</label>                                    
-                                        <label><input type="checkbox" class="colorname" id="checkbox-black" value="Black"> Black</label>                                    
-                                        <label><input type="checkbox" class="colorname" id="checkbox-blue" value="Blue"> Blue</label>                                    
-                                        <label><input type="checkbox" class="colorname" id="checkbox-gold" value="Gold"> Gold</label>
+                                        <label ><input type="checkbox" class="colorname" id="checkbox-red" value="Red" onclick="filterUpdate (`color`,event)"> Red</label>                                    
+                                        <label><input type="checkbox" class="colorname" id="checkbox-black" value="Black" onclick="filterUpdate (`color`,event)"> Black</label>                                    
+                                        <label><input type="checkbox" class="colorname" id="checkbox-blue" value="Blue" onclick="filterUpdate (`color`,event)"> Blue</label>                                    
+                                        <label><input type="checkbox" class="colorname" id="checkbox-gold" value="Gold" onclick="filterUpdate (`color`,event)"> Gold</label>
                                     </div>
                                     <div class="color-right">
-                                        <label><input type="checkbox" class="colorname" id="checkbox-green" value="Green"> Green</label>                                    
-                                        <label><input type="checkbox" class="colorname" id="checkbox-white" value="White"> White</label>                                    
-                                        <label><input type="checkbox" class="colorname" id="checkbox-grey" value="Grey">Grey</label>                                    
-                                        <label><input type="checkbox" class="colorname" id="checkbox-yellow" value="Yellow">Yellow</label>
+                                        <label><input type="checkbox" class="colorname" id="checkbox-green" value="Green" onclick="filterUpdate (`color`,event)"> Green</label>                                    
+                                        <label><input type="checkbox" class="colorname" id="checkbox-white" value="White" onclick="filterUpdate (`color`,event)"> White</label>                                    
+                                        <label><input type="checkbox" class="colorname" id="checkbox-grey" value="Grey" onclick="filterUpdate (`color`,event)">Grey</label>                                    
+                                        <label><input type="checkbox" class="colorname" id="checkbox-yellow" value="Yellow" onclick="filterUpdate (`color`,event)">Yellow</label>
                                     </div>
                                 </div>
                             </div>
@@ -102,16 +102,16 @@
                             <div class="filter-window-memory">
                                 <div class="memory">
                                     <div class="memory-left">
-                                        <label><input type="checkbox" id="checkbox-32" value="32" onclick="filterUpdateMemory (`display`,event)"> 32 Gb</label>
-                                        <label><input type="checkbox" id="checkbox-64" value="64" onclick="filterUpdateMemory (`display`,event)"> 64 Gb</label>
-                                        <label><input type="checkbox" id="checkbox-128" value="128" onclick="filterUpdateMemory (`display`,event)"> 128 Gb</label>
-                                        <label><input type="checkbox" id="checkbox-256" value="256" onclick="filterUpdateMemory (`display`,event)"> 256 Gb</label>
+                                        <label><input type="checkbox" id="checkbox-32" data-filter-type="storage"  value="32" onclick="filterUpdate (`storage`,event)"> 32 Gb</label>
+                                        <label><input type="checkbox" id="checkbox-64" data-filter-type="storage"  value="64" onclick="filterUpdate (`storage`,event)"> 64 Gb</label>
+                                        <label><input type="checkbox" id="checkbox-128" data-filter-type="storage"  value="128" onclick="filterUpdate (`storage`,event)"> 128 Gb</label>
+                                        <label><input type="checkbox" id="checkbox-256"data-filter-type="storage"   value="256" onclick="filterUpdate (`storage`,event)"> 256 Gb</label>
                                     </div>
                                     <div class="memory-right">
-                                        <label><input type="checkbox" id="checkbox-512" value="512" onclick="filterUpdateMemory (`display`,event)"> 512 Gb</label>
-                                        <label><input type="checkbox" id="checkbox-1" value="1" onclick="filterUpdateMemory (`display`,event)"> 1 TB</label>
-                                        <label><input type="checkbox" id="checkbox-2" value="2" onclick="filterUpdateMemory (`display`,event)"> 2 TB</label>
-                                        <label><input type="checkbox" id="checkbox-4" value="4" onclick="filterUpdateMemory (`display`,event)"> 4 TB</label>
+                                        <label><input type="checkbox" id="checkbox-512" data-filter-type="storage"  value="512" onclick="filterUpdate (`storage`,event)"> 512 Gb</label>
+                                        <label><input type="checkbox" id="checkbox-1" data-filter-type="storage"  value="1" onclick="filterUpdate (`storage`,event)" > 1 TB</label>
+                                        <label><input type="checkbox" id="checkbox-2" data-filter-type="storage"  value="2" onclick="filterUpdate (`storage`,event)"> 2 TB</label>
+                                        <label><input type="checkbox" id="checkbox-4" data-filter-type="storage"  value="4" onclick="filterUpdate (`storage`,event)"> 4 TB</label>
                                     </div>
                                 </div>
                             </div>
@@ -125,10 +125,10 @@
                             <div class="filter-window-os">
                                 <div class="os">
                                     <div class="os-left">
-                                        <label><input type="checkbox" id="os-IOS" value="IOS"> IOS</label>
-                                        <label><input type="checkbox" id="os-Mac-os" value="Mac-os"> Mac OS</label>
-                                        <label><input type="checkbox" id="os-tvOS" value="tvOS"> tvOS</label>
-                                        <label><input type="checkbox" id="os-Watch-os" value="Watch-os"> Watch OS</label>
+                                        <label><input type="checkbox" id="os-IOS" data-filter-type="os" value="IOS" onclick="filterUpdate (`os`,event)" > IOS</label>
+                                        <label><input type="checkbox" id="os-Mac-os" data-filter-type="os"  value="Mac-os" onclick="filterUpdate (`os`,event)" > Mac OS</label>
+                                        <label><input type="checkbox" id="os-tvOS" data-filter-type="os"  value="tvOS" onclick="filterUpdate (`os`,event)"> tvOS</label>
+                                        <label><input type="checkbox" id="os-Watch-os" data-filter-type="os"  value="Watch-os" onclick="filterUpdate (`os`,event)"> Watch OS</label>
                                     </div>
                                 </div>
                             </div>
@@ -141,11 +141,11 @@
                             <div class="filter-window-display">
                                 <div class="display">
                                     <div class="display-left">
-                                        <label><input type="checkbox" id="display-2" value="2-5" onclick="filterUpdateDisplay (`display`,event)"> 2 - 5 inch</label>
-                                        <label><input type="checkbox" id="display-5" value="5-7"  onclick="filterUpdateDisplay (`display`,event)"> 5 - 7 inch</label>
-                                        <label><input type="checkbox" id="display-7" value="7-12"  onclick="filterUpdateDisplay (`display`,event)"> 7 - 12 inch</label>
-                                        <label><input type="checkbox" id="display-12" value="12-16"  onclick="filterUpdateDisplay (`display`,event)"> 12 - 16 inch</label>
-                                        <label><input type="checkbox" id="display-16" value="16+"  onclick="filterUpdate16 (`display`,event)">  16+ inch</label>
+                                        <label><input type="checkbox" id="display-2" value="2-5" data-filter-type="display" onclick="filterUpdate (`display`,event)" > 2 - 5 inch</label>
+                                        <label><input type="checkbox" id="display-5" value="5-7"  data-filter-type="display" onclick="filterUpdate (`display`,event)"> 5 - 7 inch</label>
+                                        <label><input type="checkbox" id="display-7" value="7-12"  data-filter-type="display" onclick="filterUpdate (`display`,event)"> 7 - 12 inch</label>
+                                        <label><input type="checkbox" id="display-12" value="12-16"  data-filter-type="display" onclick="filterUpdate (`display`,event)"> 12 - 16 inch</label>
+                                        <label><input type="checkbox" id="display-16" value="16-1000" data-filter-type="display" onclick="filterUpdate (`display`,event)">  16+ inch</label>
                                     </div>
                                 </div>
                             </div>
@@ -227,44 +227,30 @@
 
             
             </section>
-            <section class="basket-window">
-                <div class="basket-header">
-                    <span>Shopping Cart</span>
-                    <span>Checkout is almost done!</span>
-                </div>
-                <div class="basket-body">
-                    <img class="basket-img" src="items/airpods.jpg" alt="backet">
-                    <div class="basket-info">
-                        <span class="basket-info-title">Apple AirPods Pro</span>
-                        <span class="baskrt-info-price">$600</span>
+            <section id="basket-list" class="basket-list">
+                <div id="basket-window" class="basket-window basket-product">
+                    <div class="basket-header">
+                        <span>Shopping Cart</span>
+                        <span>Checkout is almost done!</span>
                     </div>
-                    <div class="basket-count">
-                        <button class="left-button">
-                            <img class="button-left" src="img/icons/arrow_left.svg" alt="button">
-                        </button>
-                        <input type="number" class="count-number" value="1"></input>
-                        <button class="right-button">
-                            <img class="button-right" src="img/icons/arrow_left.svg" alt="button">
-                        </button>
+                    <div id="basket-body" class="basket-body basket-product-body">
                     </div>
-                    <button class="delete-button">
-                        <img class="button-delete" src="img/X.png" alt="button">
-                    </button>
+                    <div class="basket-result">
+                        <span>
+                            <span class="totalamount"> Total amount:</span> 
+                            <span><span class="amount-number">3 </span>ptc.</span>
+                        </span>
+                        <span>
+                            <span class="totalptice">Total price:</span> 
+                            <span><span class="price-number">1699 </span> $</span> 
+                        </span>
+                    </div>
+                    <div class="buy">
+                        <button class="button-buy">Buy</button>
+                    </div>
+    
                 </div>
-                <div class="basket-result">
-                    <span>
-                        <span class="totalamount"> Total amount:</span> 
-                        <span><span class="amount-number">3 </span>ptc.</span>
-                    </span>
-                    <span>
-                        <span class="totalptice">Total price:</span> 
-                        <span><span class="price-number">1699 </span> $</span> 
-                    </span>
-                </div>
-                <div class="buy">
-                    <button class="button-buy">Buy</button>
-                </div>
-
+    
             </section>
 
 
